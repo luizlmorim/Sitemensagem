@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uma Mensagem com Carinho</title>
+  <link rel="stylesheet" href="\style.css" />
+</head>
+
+<body>
+  <div class="envelope-wrapper">
+    <div class="envelope" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="heart">💗</div>
+    </div>
+    <div>
+      <p>Clique no envelope</p>
+    </div>
+  </div>
+
+  <div class="container" id="letter">
+    <h1>Oi, essa mensagem é pra você</h1>
+    <p>
+      Eu respeito o seu espaço e o seu tempo. Entendo que você não está passando por um momento
+      muito legal agora, e tudo bem. E desejo que você fique bem. Esse foi um jeito que pensei em falar com você sem pressionar
+      ou invadir seu espaço.
+      <br><br>
+      Eu só queria que você soubesse que eu gosto de você, de verdade. Continuo aqui com carinho, respeito e
+      compreensão. Apoio a gente continuar se conhecendo e continurar com o clubinho do livro e outros momentos juntos, mas tudo sem
+      pressa e com respeito.
+    </p>
+
+    <h2>Com carinho, Luiz</h2>
+
+    <div class="cats">
+      <img src="assets/dart-cat.png" alt="gatinho fofo">
+      <img src="assets/cute-cat.png" alt="gatinho fofo">
+      <img src="assets/fancy-cat.png" alt="gatinho fofo">
+    </div>
+
+    <div class="message" id="message">PS: Espero que esses gatinhos levem um pouquinho de conforto pra você.</div>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      document.querySelector('.flap').style.transform = 'rotateX(180deg)';
+      setTimeout(() => {
+        document.querySelector('.envelope-wrapper').style.display = 'none';
+        document.getElementById('letter').style.display = 'block';
+      }, 800);
+    }
+  </script>
+</body>
+
+</html>
