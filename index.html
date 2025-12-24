@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uma Mensagem com Carinho</title>
+<<<<<<< HEAD
   <link rel="stylesheet" href="style.css">
+=======
+  <link rel="stylesheet" href="style.css" />
+>>>>>>> f68b443 (Alterações de estilo de adição de imagens)
 </head>
 
 <body>
@@ -15,41 +19,97 @@
       <div class="heart">💗</div>
     </div>
     <div>
-      <p>Clique no envelope</p>
+      <button class="open-btn" onclick="openEnvelope()" aria-label="Abrir envelope">Clique aqui para continuar</button>
     </div>
   </div>
 
   <div class="container" id="letter">
+    <div class="note-date">23 de dezembro de 2025</div>
+    <div class="paper-heart">♡</div>
     <h1>Oi, essa mensagem é pra você</h1>
     <p>
-      Eu respeito o seu espaço e o seu tempo. Entendo que você não está passando por um momento
-      muito legal agora, e tudo bem. E desejo que você fique bem. Esse foi um jeito que pensei em falar com você sem pressionar
-      ou invadir seu espaço.
+      Neste clima de Natal, só queria deixar um carinho aqui: eu gosto de você, de verdade. Continuo por perto com
+      respeito, compreensão e afeto.
       <br><br>
-      Eu só queria que você soubesse que eu gosto de você, de verdade. Continuo aqui com carinho, respeito e
-      compreensão. Apoio a gente continuar se conhecendo e continurar com o clubinho do livro e outros momentos juntos, mas tudo sem
-      pressa e com respeito.
+      Entendo que você não está passando por um momento muito legal agora, e tudo bem. E desejo que você fique bem. Queria tá te enchendo de beijo e de pica. Esse foi uma forma que encontrei de demonstrar meu carinho por você.
+      <br><br>
+      Apoio a gente continuar se conhecendo, viver muitos clubinho do livro e outros momentos juntos,mas tudo sempressa e com respeito.
     </p>
 
     <h2>Com carinho, Luiz</h2>
 
-    <div class="cats">
-      <img src="assets/dart-cat.png" alt="gatinho fofo">
-      <img src="assets/cute-cat.png" alt="gatinho fofo">
-      <img src="assets/fancy-cat.png" alt="gatinho fofo">
+    <div class="gift-area">
+      <div class="gift" role="button" tabindex="0" aria-label="Abrir presente" onclick="openGift()">
+        <img src="assets/box-gift.png" alt="Caixa de presente" class="gift-image" />
+        <!--<div class="gift-box">-->
+          <!--<div class="ribbon"></div> -->
+        <!--</div>-->
+        <div class="gift-label">Toque para abrir</div>
+      </div>
     </div>
 
-    <div class="message" id="message">PS: Espero que esses gatinhos levem um pouquinho de conforto pra você.</div>
+    <div class="message" id="message">PS: Espero que este presentinho leve um pouquinho de conforto pra você.</div>
+
+    <!-- Modal do presente -->
+    <div id="gift-modal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" aria-label="Fechar presente">×</button>
+        <div class="modal-body">
+          <!-- Ilustração simples em SVG do presente -->
+          <img src="assets/maconha.png" alt="Ilustração de uma machona" class="gift-image" />
+          <h3 id="modal-title">Um back virtual para você</h3>
+          <p class="modal-text">Espero que isso traga um sorriso.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const now = new Date();
+      const day = now.getDate();
+      const month = now.toLocaleString('pt-BR', { month: 'long' });
+      const year = now.getFullYear();
+      const noteDate = document.querySelector('.note-date');
+      if (noteDate) noteDate.textContent = `${day} de ${month} de ${year}`;
+    });
+
     function openEnvelope() {
-      document.querySelector('.flap').style.transform = 'rotateX(180deg)';
+      document.querySelector('.flap').style.transform = 'rotateX(0deg)';
       setTimeout(() => {
         document.querySelector('.envelope-wrapper').style.display = 'none';
         document.getElementById('letter').style.display = 'block';
       }, 800);
     }
+
+    /* Funções do presente/modal */
+    function openGift() {
+      const modal = document.getElementById('gift-modal');
+      if (!modal) return;
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('open');
+      // adicionar listener de fechamento
+    }
+
+    function closeGift() {
+      const modal = document.getElementById('gift-modal');
+      if (!modal) return;
+      modal.setAttribute('aria-hidden', 'true');
+      modal.classList.remove('open');
+    }
+
+    // fechar ao clicar no overlay ou no botão
+    document.addEventListener('click', (e) => {
+      const modal = document.getElementById('gift-modal');
+      if (!modal) return;
+      if (e.target.classList.contains('modal-close')) closeGift();
+      if (e.target === modal) closeGift();
+    });
+
+    // Esc para fechar
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeGift();
+    });
   </script>
 </body>
 
